@@ -1,5 +1,3 @@
-document.getElementById("btn").addEventListener("click", function(event) {
-  event.preventDefault(); // Evitar el envío automático del formulario
 document.getElementById("btn").addEventListener("click", () => {
 
   var username = document.getElementById("emailinput").value;
