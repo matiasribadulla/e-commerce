@@ -1,11 +1,12 @@
-document.getElementById("btn").addEventListener("click", function() {
-    var username = document.getElementById("emailinput").value;
-    var password = document.getElementById("password").value;
-    var messageElement = document.getElementById("login-message");
+document.getElementById("btn").addEventListener("click", function(event) {
+  event.preventDefault(); // Evitar el envío automático del formulario
 
-    if (username === "usuario" && password === "contraseña") {
-      messageElement.textContent = "Inicio de sesión exitoso.";
-    } else {
-      messageElement.textContent = "Credenciales incorrectas. Por favor, inténtalo de nuevo.";
-    }
-  });
+  var username = document.getElementById("emailinput").value;
+  var password = document.getElementById("password").value;
+
+  if (username === "" || password === "") {
+      alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+  } else {
+      location.replace("index.html");
+  }
+});
