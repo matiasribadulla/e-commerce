@@ -8,5 +8,7 @@ document.getElementById("btn").addEventListener("click", () => {
   } else {
       localStorage.setItem("logeado", true);
       location.replace("index.html");
+      localStorage.setItem("logeado", document.getElementById("emailinput").value);
+      location.replace("index.html");   
   }
 });

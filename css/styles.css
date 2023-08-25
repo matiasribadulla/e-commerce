@@ -205,4 +205,18 @@ a.custom-card:hover {
 
 form {
   display:block;
-  margin-top: 0em;}
+  margin-top: 0em;}  margin-top: 0em;}
+
+#search-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#search-input {
+    padding: 10px;
+    width: 300px;
+}
+
+#search-results {
+    margin-top: 20px;
+}
