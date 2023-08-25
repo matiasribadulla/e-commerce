@@ -38,7 +38,7 @@ let getJSONData = function(url){
         hideSpinner();
         return result;
     });
-}};
+};
 
 document.addEventListener("DOMContentLoaded", ()=>{
   let lista = document.getElementsByTagName("li");
