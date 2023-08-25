@@ -16,7 +16,3 @@ document.addEventListener("DOMContentLoaded", function(){
         location.replace("login.html");   
     }      
 });
-
-if (localStorage.getItem("logeado") === null){
-    location.replace("login.html");   
-}
