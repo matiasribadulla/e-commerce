@@ -41,7 +41,7 @@ let getJSONData = function(url){
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
-  let lista = document.getElementsByTagName("li");
+  let lista = document.getElementById("navbarNav").getElementsByClassName("nav-item");
 
-  lista[3].innerHTML = "<a class=nav-link href=my-profile.html>" +localStorage.getItem("logeado")+ "</a>";
+  lista[lista.length-1].innerHTML = "<a class=nav-link href=my-profile.html>" +localStorage.getItem("logeado")+ "</a>";
 });

@@ -137,6 +137,6 @@ const searchResults = document.getElementById('search-results');
 searchInput.addEventListener('input', ()=> {
   let searchText = searchInput.value.toLowerCase();
 
-  let a = productsArray.products.filter(product => product.name.toLowerCase().includes(searchText));
+  let a = productsArray.products.filter(product => product.name.toLowerCase().includes(searchText)|| product.description.toLowerCase().includes(searchText));
   showProductsList(a);
 });
