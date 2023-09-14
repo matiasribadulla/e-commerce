@@ -37,10 +37,26 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div id="container">
+    </div>
+    <div class="border rounded-3 cont">
+      <h5>COMENTARIOS:</h5>
+      <ul class="list-group" id="list">
+      </ul>
+    </div>
+    <div>
+      <h6>COMENTAR:</h6>
+      <p>Tu opinión:</p>
+      <textarea name="opinion" id="opinion" cols="30" rows="2"></textarea>
+      <p>Tu puntuación:</p>
+      <select class="form-select" aria-label="Select Category">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input type="button" value="enviar">
     </div>
   </main>
   <footer class="text-muted">
