@@ -3,7 +3,6 @@ const btn = document.querySelector("input");
 let micomnt = JSON.parse(sessionStorage.getItem("miscoments"+localStorage.getItem("productID"))) || [];
 
 function showProductInfo(product){
-
     let htmlContentToAppend = `
             <div class="list-group-item list-group-item-action cursor-active">
                 <h1>${product.name}</h1>
@@ -67,12 +66,29 @@ function showComments(comentarios){
     comentarios.forEach(coment => {
         const li = document.createElement("li");
         li.classList.add("list-group-item");
+        li.classList.add("coments");
         li.innerHTML = `${coment.user} - ${coment.dateTime} - ${Score(coment.score)} <br>
         ${coment.description}` ;
         lista.appendChild(li);
     });
 }
 
+function setProductID(id) {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html"
+}
+
+function showRelated(registro){
+    let htmlContentToAppend="";
+    registro.forEach(product => {
+        htmlContentToAppend += `
+            <div class="related" onclick="setProductID(${product.id})">
+            <img class="imgrelated card-img-top" id="img-rela" src=${product.image}>
+            <div> ${product.name}</div>
+            </div>
+        `})
+        document.getElementById("relatedProducts").innerHTML += htmlContentToAppend;
+}
 
 document.addEventListener("DOMContentLoaded", ()=>{
     getJSONData(PRODUCT_INFO_URL+localStorage.getItem("productID")+".json").then(function(resultObj){
@@ -86,6 +102,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if (resultObj.status === "ok"){
             commentsArray = resultObj.data;
             showComments(commentsArray);
+            showRelated(productArray.relatedProducts)
         }
     })
 
