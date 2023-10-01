@@ -295,3 +295,24 @@ Aca Arranca el carrusel
 .form-select {
   width: 243px;
 }
+
+.dark {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+#img-rela {
+  width: 200px;
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.related {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+}
