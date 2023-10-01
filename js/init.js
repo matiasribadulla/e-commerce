@@ -43,5 +43,65 @@ let getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", ()=>{
   let lista = document.getElementById("navbarNav").getElementsByClassName("nav-item");
 
-  lista[lista.length-1].innerHTML = "<a class=nav-link href=my-profile.html>" +localStorage.getItem("logeado")+ "</a>";
+  lista[lista.length-1].innerHTML = `
+    <div class="dropdown">
+      <a class="btn btn-secondary dropdown-toggle" href="my-profile.html" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        ${localStorage.getItem("logeado")}
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+        <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+        <li><button onclick="cambio()">Cambiar Modo</button></li>
+        <li><a class="dropdown-item" href="login.html" onclick="cerrar()">Cerrar sesión</a></li>
+      </ul>
+    </div>`;
+    setTimeout(colorPag,100);
 });
+
+function cambio(){
+  let page = document.body;
+  let divs = document.getElementsByTagName("div");
+  let coments = document.getElementsByClassName("coments");
+  page.classList.toggle("dark");
+  for(let i=0;i<divs.length;i++){
+    divs[i].classList.toggle("dark");
+  }
+  for(let i=0;i<coments.length;i++){
+    coments[i].classList.toggle("dark");
+  }
+
+  //
+  if(document.body.classList.contains("dark")){
+      localStorage.setItem('dark-mode','true');
+  } else {
+      localStorage.setItem('dark-mode','false');
+  };
+};
+
+function colorPag(){
+  if(localStorage.getItem("dark-mode") === "true"){
+      document.body.classList.add("dark")
+      let divs = document.getElementsByTagName("div")
+      let coments = document.getElementsByClassName("coments")
+      for(let i=0;i<divs.length;i++){
+        divs[i].classList.add("dark");
+      }
+      for(let i=0;i<coments.length;i++){
+        coments[i].classList.add("dark");
+      }
+  } else {
+      document.body.classList.remove("dark")
+      let divs = document.getElementsByTagName("div")
+      let coments = document.getElementsByClassName("coments")
+      for(let i=0;i<divs.length;i++){
+        divs[i].classList.remove("dark");
+      }
+      for(let i=0;i<coments.length;i++){
+        coments[i].classList.remove("dark");
+      }
+  }}
+  
+  function cerrar(){
+    localStorage.removeItem("logeado");
+  }
