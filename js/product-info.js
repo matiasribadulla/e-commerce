@@ -4,7 +4,7 @@ let micomnt = JSON.parse(sessionStorage.getItem("miscoments"+localStorage.getIte
 
 function showProductInfo(product){
     let htmlContentToAppend = `
-            <div class="list-group-item list-group-item-action cursor-active">
+            <div class="list-group-item">
                 <h1>${product.name}</h1>
             <div> <br>
                 <p>Precio: ${product.currency} ${product.cost}</p>
@@ -82,7 +82,7 @@ function showRelated(registro){
     let htmlContentToAppend="";
     registro.forEach(product => {
         htmlContentToAppend += `
-            <div class="related" onclick="setProductID(${product.id})">
+            <div class="related cursor-active" onclick="setProductID(${product.id})">
             <img class="imgrelated card-img-top" id="img-rela" src=${product.image}>
             <div> ${product.name}</div>
             </div>

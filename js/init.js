@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
         <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-        <li><button onclick="cambio()">Cambiar Modo</button></li>
+        <li><button class="dropdown-item" onclick="cambio()">Cambiar Modo</button></li>
         <li><a class="dropdown-item" href="login.html" onclick="cerrar()">Cerrar sesión</a></li>
       </ul>
     </div>`;
@@ -62,13 +62,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
 function cambio(){
   let page = document.body;
   let divs = document.getElementsByTagName("div");
-  let coments = document.getElementsByClassName("coments");
+  let lis = document.getElementsByTagName("li")
   page.classList.toggle("dark");
   for(let i=0;i<divs.length;i++){
     divs[i].classList.toggle("dark");
   }
-  for(let i=0;i<coments.length;i++){
-    coments[i].classList.toggle("dark");
+  for(let i=0;i<lis.length;i++){
+    lis[i].classList.toggle("dark");
   }
 
   //
@@ -80,28 +80,28 @@ function cambio(){
 };
 
 function colorPag(){
-  if(localStorage.getItem("dark-mode") === "true"){
-      document.body.classList.add("dark")
-      let divs = document.getElementsByTagName("div")
-      let coments = document.getElementsByClassName("coments")
-      for(let i=0;i<divs.length;i++){
-        divs[i].classList.add("dark");
-      }
-      for(let i=0;i<coments.length;i++){
-        coments[i].classList.add("dark");
-      }
-  } else {
-      document.body.classList.remove("dark")
-      let divs = document.getElementsByTagName("div")
-      let coments = document.getElementsByClassName("coments")
-      for(let i=0;i<divs.length;i++){
-        divs[i].classList.remove("dark");
-      }
-      for(let i=0;i<coments.length;i++){
-        coments[i].classList.remove("dark");
-      }
-  }}
-  
-  function cerrar(){
-    localStorage.removeItem("logeado");
+if(localStorage.getItem("dark-mode") === "true"){
+  document.body.classList.add("dark")
+  let divs = document.getElementsByTagName("div")
+  let lis = document.getElementsByTagName("li")
+  for(let i=0;i<divs.length;i++){
+    divs[i].classList.add("dark");
   }
+  for(let i=0;i<lis.length;i++){
+    lis[i].classList.add("dark");
+  }
+} else {
+  document.body.classList.remove("dark")
+  let divs = document.getElementsByTagName("div")
+  let lis = document.getElementsByTagName("li")
+  for(let i=0;i<divs.length;i++){
+    divs[i].classList.remove("dark");
+  }
+  for(let i=0;i<coments.length;i++){
+    lis[i].classList.remove("dark");
+  }
+}}
+
+function cerrar(){
+localStorage.removeItem("logeado");
+}

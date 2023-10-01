@@ -301,6 +301,11 @@ Aca Arranca el carrusel
   color: #fff !important;
 }
 
+.dropdown-item, .dz-message {
+  background-color: white;
+  color: black;
+}
+
 #img-rela {
   width: 200px;
   display: flex;

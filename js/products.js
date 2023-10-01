@@ -50,7 +50,7 @@ function showProductsList(array){
            ((maxCount == undefined) || (maxCount != undefined && parseInt(articulo.cost) <= maxCount))){
        
             htmlContentToAppend += `
-                <div onclick="setProductID(${articulo.id})" class="list-group-item list-group-item-action">
+                <div onclick="setProductID(${articulo.id})" class="list-group-item list-group-item-action cursor-active">
                     <div class="row">
                         <div class="col-3">
                             <img src="` + articulo.image + `" alt="product image" class="img-thumbnail">
