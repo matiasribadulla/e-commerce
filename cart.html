@@ -36,9 +36,58 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="container" id="carrito" >
+      <div class="row justify-content-center">
+        <div class=" col-lg-6 ">
+          <table class="border border-2 " id="tabla">
+            <tr>
+              <th></th>
+              <th>Nombre</th>
+              <th>Costo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row row-cols-2 justify-content-end">
+        <div class= "col col-4 mt-3" id="tipoEnvio">
+          <h5>Tipo de envío</h5>
+          <div><input type="radio" name="envio" > Premium 2 a 5 días (15%)</div>
+          <br>
+          <div><input type="radio" name="envio"> Express 5 a 8 días (7%)</div>
+          <br>
+          <div><input type="radio" name="envio" > Standard 12 a 15 días (5%)</div>
+        </div>
+        <div class="row  ">
+          <div class="col  mt-3"id="dirEnvio">
+            <h5>Direccion de envío</h5>
+            <form>
+              <div class="row my-3">
+                <div class="col-lg-4 col-md-6 ">
+                  <div class="form-outline">
+                    <label class="form-label" for="typeText">Calle</label>
+                    <input type="text" id="typeText" class="form-control" />    
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-outline w-50">
+                    <label class="form-label" for="typeText">Número</label>
+                    <input type="text" id="typeText" class="form-control" /> 
+                  </div>
+                </div>
+              </div>
+              <div class="row my-3">
+                <div class="col-md-10">
+                  <div class="form-outline w-50">
+                    <label class="form-label" for="typeText">Esquina </label>
+                    <input type="text" id="typeText" class="form-control" />  
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </main>
