@@ -29,6 +29,7 @@ nav a {
 }
 
 .jumbotron {
+  display: flex;
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
@@ -320,4 +321,16 @@ Aca Arranca el carrusel
   align-items: center;
   justify-content: center;
   display: inline-block;
+}
+
+#carrito {
+  padding-top: 3vh;
+}
+
+#tipoEnvio {
+  margin-left: 6vh;
+}
+
+#dirEnvio { 
+  margin-left: 6vh;
 }
