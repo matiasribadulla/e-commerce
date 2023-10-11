@@ -1,11 +1,14 @@
 const lista = document.getElementById("list");
 const btn = document.querySelector("input");
 let micomnt = JSON.parse(sessionStorage.getItem("miscoments"+localStorage.getItem("productID"))) || [];
+let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
+let info = ""
 
 function showProductInfo(product){
     let htmlContentToAppend = `
             <div class="list-group-item">
                 <h1>${product.name}</h1>
+                <input type="button" onclick="agregarCarrito()" value="Agregar al carrito">
             <div> <br>
                 <p>Precio: ${product.currency} ${product.cost}</p>
             </div>
@@ -35,6 +38,14 @@ function showProductInfo(product){
                 </div>
             </div>
             `
+            info = {
+                "id": `${product.id}`,
+                "name": `${product.name}`,
+                "count": 1,
+                "unitCost": `${product.cost}`,
+                "currency": `${product.currency}`,
+                "image": `${product.images[0]}`,
+            }        
         document.getElementById("container").innerHTML = htmlContentToAppend;
     }
 
@@ -128,3 +139,8 @@ btn.addEventListener("click",()=>{
 
     showComments(data);
 })
+
+function agregarCarrito(){
+    carrito.push(info);
+    sessionStorage.setItem("carrito", JSON.stringify(carrito));
+}
