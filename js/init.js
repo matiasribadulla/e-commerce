@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         <li><a class="dropdown-item" href="login.html" onclick="cerrar()">Cerrar sesión</a></li>
       </ul>
     </div>`;
-    setTimeout(colorPag,100);
+    setTimeout(colorPag,175);
 });
 
 function cambio(){
