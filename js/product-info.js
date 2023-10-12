@@ -8,7 +8,7 @@ function showProductInfo(product){
     let htmlContentToAppend = `
             <div class="list-group-item">
                 <h1>${product.name}</h1>
-                <input type="button" onclick="agregarCarrito()" value="Agregar al carrito">
+                <input type="button" onclick="agregarCarrito()" value="Agregar al carrito" id="agregarCarrito">
             <div> <br>
                 <p>Precio: ${product.currency} ${product.cost}</p>
             </div>

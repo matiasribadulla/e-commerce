@@ -334,3 +334,9 @@ Aca Arranca el carrusel
 #dirEnvio { 
   margin-left: 6vh;
 }
+
+#agregarCarrito {
+  background-color: #0faf1f;
+  color: #fff;
+  border-radius: 5px;
+}
