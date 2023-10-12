@@ -18,7 +18,7 @@ function showCart(registro){
 function actualizarPrecio(input){
     const productId = input.getAttribute("product-id");
     const total = document.getElementById(`total-${productId}`)
-    const producto = carrito.find(item => item.id = productId);
+    const producto = carrito.find(item => item.id == productId);
 
     if (producto) {
         const cantidad = input.value;
