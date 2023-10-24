@@ -141,6 +141,17 @@ btn.addEventListener("click",()=>{
 })
 
 function agregarCarrito(){
-    carrito.push(info);
-    sessionStorage.setItem("carrito", JSON.stringify(carrito));
+    const objet = carrito.findIndex((product) => product.id == info.id)
+    if (objet !== -1){
+        const update ={
+            ...carrito[objet],
+            "count": carrito[objet].count + 1, 
+        }
+        carrito[objet] = update;
+        sessionStorage.setItem("carrito", JSON.stringify(carrito));
+    } else {
+        carrito.push(info);
+        sessionStorage.setItem("carrito", JSON.stringify(carrito));
+    
+    }
 }
