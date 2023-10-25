@@ -61,7 +61,7 @@ function subtotales(){
     let temporal = 0;
     for( let articulo of carrito){
         if (articulo.currency == "UYU"){
-            temporal += articulo.count * (articulo.unitCost*40);
+            temporal += articulo.count * (articulo.unitCost/40);
         }else{
             temporal += articulo.count * articulo.unitCost;
         }
