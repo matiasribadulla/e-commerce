@@ -154,6 +154,29 @@ document.getElementById("comprar").addEventListener("click",()=>{
     }else{
         btn.classList.remove("is-invalid")
     }
+
+    if (tipopago == "transferencia"){
+        let cuenta = document.getElementById("numero_cuenta").value;
+
+        if (cuenta == ""){
+            btn.classList.add("is-invalid")
+        }else{
+        btn.classList.remove("is-invalid")
+        }
+    }
+
+    if (tipopago == "crédito"){
+        let numero = document.getElementById("num_tarjeta").value; 
+        let code = document.getElementById("codigo_tarjeta").value;
+        let fecha = document.getElementById("vencimiento_tarjeta").value;
+        
+        if(numero == "" || code == "" || fecha == ""){
+            btn.classList.add("is-invalid")
+        } else{
+            btn.classList.remove("is-invalid")
+        }
+    }
+
     if( finalizar.length == 0){
         
         Swal.fire({
@@ -164,8 +187,6 @@ document.getElementById("comprar").addEventListener("click",()=>{
             timer: 1500
           })
     }
-
-    
 })
 
 function borrar(button){
