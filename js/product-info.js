@@ -1,19 +1,20 @@
-const lista = document.getElementById("list");
+const list = document.getElementById("list");
 const btn = document.querySelector("input");
 let micomnt = JSON.parse(sessionStorage.getItem("miscoments"+localStorage.getItem("productID"))) || [];
-let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
+let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 let info = ""
 
+/*mostrar la informacion del producto*/
 function showProductInfo(product){
     let htmlContentToAppend = `
             <div class="list-group-item">
                 <h1>${product.name}</h1>
-                <input type="button" onclick="agregarCarrito()" value="Agregar al carrito" id="agregarCarrito">
+                <input type="button" onclick="addCart()" value="Agregar al carrito" id="agregarCarrito">
             <div> <br>
                 <p>Precio: ${product.currency} ${product.cost}</p>
             </div>
             <div>
-                <p>Descripcion:</p> ${product.description}  
+                <p>Descripcion:</p> ${product.description}
             </div>
             <div><br>
                 <p>Categoria:</p>  ${product.category}
@@ -38,17 +39,18 @@ function showProductInfo(product){
                 </div>
             </div>
             `
-            info = {
-                "id": `${product.id}`,
-                "name": `${product.name}`,
-                "count": 1,
-                "unitCost": `${product.cost}`,
-                "currency": `${product.currency}`,
-                "image": `${product.images[0]}`,
-            }        
-        document.getElementById("container").innerHTML = htmlContentToAppend;
-    }
+    info = {
+        "id": `${product.id}`,
+        "name": `${product.name}`,
+        "count": 1,
+        "unitCost": `${product.cost}`,
+        "currency": `${product.currency}`,
+        "image": `${product.images[0]}`,
+    }        
+    document.getElementById("container").innerHTML += htmlContentToAppend;
+};
 
+/*funcion para mostrar imagenes*/
 function showPictures(array){
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
@@ -58,8 +60,9 @@ function showPictures(array){
         `
     }
     return htmlContentToAppend;
-}
+};
 
+/*calificacion como estrellas*/ 
 function Score(n) {
     let htmlContentToAppend="";
     let x=0;
@@ -73,22 +76,25 @@ function Score(n) {
     return htmlContentToAppend;
 };
 
-function showComments(comentarios){
-    comentarios.forEach(coment => {
+/*mostrar comentarios*/
+function showComments(coments){
+    coments.forEach(coment => {
         const li = document.createElement("li");
         li.classList.add("list-group-item");
         li.classList.add("coments");
         li.innerHTML = `${coment.user} - ${coment.dateTime} - ${Score(coment.score)} <br>
         ${coment.description}` ;
-        lista.appendChild(li);
+        list.appendChild(li);
     });
-}
+};
 
+/*establece el ID de un producto en el almacenamiento local y redirige a la pagina del producto*/
 function setProductID(id) {
     localStorage.setItem("productID", id);
     window.location = "product-info.html"
-}
+};
 
+/*productos relacionados*/
 function showRelated(registro){
     let htmlContentToAppend="";
     registro.forEach(product => {
@@ -99,29 +105,31 @@ function showRelated(registro){
             </div>
         `})
         document.getElementById("relatedProducts").innerHTML += htmlContentToAppend;
-}
+};
 
+/*cargar y mostrar la info del producto, productos relacionados y comentarios cuando la pagina carga por completo*/
 document.addEventListener("DOMContentLoaded", ()=>{
-    getJSONData(PRODUCT_INFO_URL+localStorage.getItem("productID")+".json").then(function(resultObj){
+    getJSONData(PRODUCT_INFO_URL+localStorage.getItem("productID")+EXT_TYPE).then(function(resultObj){
         if (resultObj.status === "ok"){
             productArray = resultObj.data;
             showProductInfo(productArray)
+            showRelated(productArray.relatedProducts)
         }
-    })
+    });
 
-    getJSONData(PRODUCT_INFO_COMMENTS_URL+localStorage.getItem("productID")+".json").then(function(resultObj){
+    getJSONData(PRODUCT_INFO_COMMENTS_URL+localStorage.getItem("productID")+EXT_TYPE).then(function(resultObj){
         if (resultObj.status === "ok"){
             commentsArray = resultObj.data;
             showComments(commentsArray);
-            showRelated(productArray.relatedProducts)
         }
-    })
+    });
 
     showComments(micomnt);
 });
 
+/*agregar comentario*/
 btn.addEventListener("click",()=>{
-    let comentario = document.getElementById("opinion").value;
+    let comment = document.getElementById("opinion").value;
     let stars = document.querySelector("select").value;
     var date = new Date();
     var current_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
@@ -130,7 +138,7 @@ btn.addEventListener("click",()=>{
    
     let data = [{
         user: localStorage.getItem("logeado"),
-        description: comentario,
+        description: comment,
         score: stars,
         dateTime: `${date_time}`
     }];
@@ -138,20 +146,21 @@ btn.addEventListener("click",()=>{
     sessionStorage.setItem("miscoments"+localStorage.getItem("productID"), JSON.stringify(micomnt));
 
     showComments(data);
-})
+});
 
-function agregarCarrito(){
-    const objet = carrito.findIndex((product) => product.id == info.id)
+/*funcion para añadir productos al carrito*/
+function addCart(){
+    const objet = cart.findIndex((product) => product.id == info.id)
     if (objet !== -1){
         const update ={
-            ...carrito[objet],
-            "count": carrito[objet].count + 1, 
+            ...cart[objet],
+            "count": cart[objet].count + 1, 
         }
-        carrito[objet] = update;
-        sessionStorage.setItem("carrito", JSON.stringify(carrito));
+        cart[objet] = update;
+        sessionStorage.setItem("cart", JSON.stringify(cart));
     } else {
-        carrito.push(info);
-        sessionStorage.setItem("carrito", JSON.stringify(carrito));
+        cart.push(info);
+        sessionStorage.setItem("cart", JSON.stringify(cart));
     
     }
-}
+};
