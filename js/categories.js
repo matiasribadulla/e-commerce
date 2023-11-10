@@ -89,7 +89,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
+document.addEventListener("DOMContentLoaded", ()=>{
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data
@@ -99,19 +99,19 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     
 // Aqui comienzan los eventos para los botones de ordenar y filtrar
-    document.getElementById("sortAsc").addEventListener("click", function(){
+    document.getElementById("sortAsc").addEventListener("click", ()=>{
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
 
-    document.getElementById("sortDesc").addEventListener("click", function(){
+    document.getElementById("sortDesc").addEventListener("click", ()=>{
         sortAndShowCategories(ORDER_DESC_BY_NAME);
     });
 
-    document.getElementById("sortByCount").addEventListener("click", function(){
+    document.getElementById("sortByCount").addEventListener("click", ()=>{
         sortAndShowCategories(ORDER_BY_PROD_COUNT);
     });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+    document.getElementById("clearRangeFilter").addEventListener("click", ()=>{
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
 
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
+    document.getElementById("rangeFilterCount").addEventListener("click", ()=>{
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
         minCount = document.getElementById("rangeFilterCountMin").value;
