@@ -6,6 +6,7 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+// Funcion para ordenar las categorias
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -33,13 +34,14 @@ function sortCategories(criteria, array){
     }
 
     return result;
-}
+};
 
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
-}
+};
 
+//Funcion para mostrar la lista de categorías
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -68,8 +70,8 @@ function showCategoriesList(){
         }
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
-    }
-}
+    };
+};
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
@@ -82,7 +84,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 
     //Muestro las categorías ordenadas
     showCategoriesList();
-}
+};
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -96,6 +98,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
+    
+// Aqui comienzan los eventos para los botones de ordenar y filtrar
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
